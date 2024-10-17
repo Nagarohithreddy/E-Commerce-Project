@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+      'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 20px;
+  background: #f8f8f8;
+}
+
+img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive grid layout for product display */
+.productsWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  background: #ff6f61;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.btn:hover {
+  background: #ff4a3a;
+  transform: scale(1.05);
+}
+
+.heading {
+  padding: 25px 0;
+  text-align: center;
+  color: #333;
+  font-size: 2em;
+}
+
+.cartCount {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: 40px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #555;
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+.cartCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  margin-bottom: 20px;
+  padding: 14px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cartCard img {
+  height: 100px;
+  object-fit: cover;
+}
+
+.cartCard h5 {
+  margin: 0;
+}
+
+.cartCard button {
+  border: none;
+  outline: none;
+  background: #ff6f61;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.cartCard button:hover {
+  background: #ff4a3a;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .productsWrapper {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid for tablets */
+  }
+  
+  .card img {
+    height: 150px; /* Smaller image height for mobile devices */
+  }
+  
+  .btn {
+    padding: 8px 12px; /* Smaller button for mobile devices */
+  }
+  
+  .heading {
+    font-size: 1.5em; /* Reduce font size on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .productsWrapper {
+    grid-template-columns: 1fr; /* Single column layout for small screens */
+  }
+  
+  .card {
+    padding: 15px; /* Reduce card padding on small screens */
+  }
+  
+  .card img {
+    height: 120px; /* Further reduce image height */
+  }
+  
+  .heading {
+    font-size: 1.2em; /* Reduce heading font size for mobile */
+  }
+  
+  .btn {
+    padding: 6px 10px; /* Adjust button size for smaller screens */
+  }
+}
