@@ -6,19 +6,18 @@ import axios from 'axios';
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortOption, setSortOption] = useState('none'); // State for sorting option
-  const [categories, setCategories] = useState([]); // State for categories
-  const [selectedCategory, setSelectedCategory] = useState(''); // Selected category
+  const [sortOption, setSortOption] = useState('none');
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [addedToCart, setAddedToCart] = useState({}); // State to track added products
   const dispatch = useDispatch();
 
-  // Fetch products and categories from API on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('https://fakestoreapi.com/products');
         setProducts(response.data);
 
-        // unique categories
         const uniqueCategories = [...new Set(response.data.map(item => item.category))];
         setCategories(uniqueCategories);
       } catch (error) {
@@ -31,9 +30,9 @@ const Home = () => {
 
   const handleAdd = (product) => {
     dispatch(add(product));
+    setAddedToCart(prev => ({ ...prev, [product.id]: true })); // Update state to mark as added
   };
 
-  // Sorting products
   const sortedProducts = [...products]
     .filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()))
     .filter(product => selectedCategory ? product.category === selectedCategory : true)
@@ -46,16 +45,14 @@ const Home = () => {
   return (
     <div>
       <h1 className="heading">Product List</h1>
-      
-      {/* Search Input */}
+
       <input
         type="text"
         placeholder="Search products..."
         onChange={(e) => setSearchTerm(e.target.value)}
         style={{ padding: '10px', marginBottom: '20px' }}
       />
-      
-      {/* Filter by Category */}
+
       <select
         onChange={(e) => setSelectedCategory(e.target.value)}
         style={{ padding: '10px', marginBottom: '20px' }}
@@ -65,8 +62,7 @@ const Home = () => {
           <option key={category} value={category}>{category}</option>
         ))}
       </select>
-      
-      {/* Sort Products */}
+
       <select
         onChange={(e) => setSortOption(e.target.value)}
         style={{ padding: '10px', marginBottom: '20px' }}
@@ -76,14 +72,19 @@ const Home = () => {
         <option value="highToLow">Price: High to Low</option>
       </select>
 
-      {/* Display Products */}
       <div className="productsWrapper">
         {sortedProducts.map((product) => (
           <div key={product.id} className="card">
             <img src={product.image} alt="img" />
             <h5>{product.title}</h5>
             <h5>${product.price}</h5>
-            <button className="btn" onClick={() => handleAdd(product)}>Add to Cart</button>
+            <button
+              className="btn"
+              onClick={() => handleAdd(product)}
+              disabled={!!addedToCart[product.id]} // Disable button if added to cart
+            >
+              {addedToCart[product.id] ? 'Added to Cart' : 'Add to Cart'}
+            </button>
           </div>
         ))}
       </div>

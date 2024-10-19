@@ -10,8 +10,8 @@ body {
 }
 
 img {
-  height: 200px;
-  object-fit: cover;
+  width: 100%; /* Make images responsive */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .card {
@@ -35,6 +35,26 @@ img {
   gap: 30px;
 }
 
+/* Filters Container */
+.filters-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  align-items: center;
+  justify-content: flex-start; 
+  padding: 10px 20px; 
+  background-color: #f3f3f3; 
+  border-bottom: 1px solid #ddd; /* Separator line */
+  margin-bottom: 20px; /* Spacing below filters */
+}
+
+.filters-container input,
+.filters-container select {
+  margin-right: 15px; /* Space between elements */
+  padding: 10px; /* Add padding for better touch targets */
+  min-width: 150px; /* Set a minimum width */
+}
+
+/* Button styles */
 .btn {
   border: none;
   outline: none;
@@ -52,24 +72,12 @@ img {
   transform: scale(1.05);
 }
 
+/* Heading styles */
 .heading {
   padding: 25px 0;
   text-align: center;
   color: #333;
   font-size: 2em;
-}
-
-.cartCount {
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-left: 40px;
-}
-
-.navLink {
-  text-decoration: none;
-  color: #555;
-  margin-left: 20px;
-  font-weight: 500;
 }
 
 .cartCard {
@@ -107,43 +115,98 @@ img {
   background: #ff4a3a;
 }
 
+
+
+.footer {
+  background-color: #232F3E; 
+  color: white; 
+  padding: 20px 0; 
+  text-align: center; 
+}
+
+.footer-container {
+  display: flex; /* Flex display for footer */
+  justify-content: space-between; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+}
+
+.footer-section {
+  flex: 1; /* Each section will take equal space */
+  padding: 0 20px;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px; 
+}
+
+.footer-section a {
+  color: white; 
+  text-decoration: none; 
+}
+
+.footer-section a:hover {
+  color: #FFD700; 
+}
+
+
+.social-icons {
+  display: block; 
+  justify-content: center; 
+  margin-top: 10px; 
+}
+
+.social-icons .social-icon {
+  color: white; 
+  font-size: 24px; 
+  margin: 0 10px; 
+  transition: color 0.3s; 
+}
+
+.social-icons .social-icon:hover {
+  color: #FFD700; /* Gold on hover */
+}
+
+.footer-bottom {
+  margin-top: 20px; 
+  font-size: 14px; 
+}
+
+
 /* Media queries for responsive design */
 @media (max-width: 768px) {
+  .filters-container {
+    flex-direction: column; /* keeping filters vertically on smaller screens */
+    align-items: flex-start; 
+    padding: 10px; 
+  }
+
+  .filters-container input,
+  .filters-container select {
+    width: 100%; 
+    margin: 10px 0; 
+  }
+
   .productsWrapper {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid for tablets */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
   }
-  
-  .card img {
-    height: 150px; /* Smaller image height for mobile devices */
-  }
-  
-  .btn {
-    padding: 8px 12px; /* Smaller button for mobile devices */
-  }
-  
+
   .heading {
-    font-size: 1.5em; /* Reduce font size on mobile */
+    font-size: 1.5em; 
+  }
+
+  .footer-container {
+    flex-direction: column; 
+    align-items: center; 
   }
 }
 
 @media (max-width: 480px) {
   .productsWrapper {
-    grid-template-columns: 1fr; /* Single column layout for small screens */
+    grid-template-columns: 1fr; 
   }
-  
+
   .card {
-    padding: 15px; /* Reduce card padding on small screens */
-  }
-  
-  .card img {
-    height: 120px; /* Further reduce image height */
-  }
-  
-  .heading {
-    font-size: 1.2em; /* Reduce heading font size for mobile */
-  }
-  
-  .btn {
-    padding: 6px 10px; /* Adjust button size for smaller screens */
+    padding: 15px; 
   }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './navbar.css'; // New CSS file for navbar styles
+import './navbar.css'; 
 
 const Navbar = () => {
   const items = useSelector((state) => state.cart);
@@ -31,4 +31,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
